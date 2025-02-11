@@ -55,7 +55,3 @@ To get started with the project, follow these steps:
 - `npm run build`: Build the project for production
 - `npm run lint`: Run ESLint
 - `npm run preview`: Preview the production build
-
-## License
-
-This project is licensed under the MIT License.
