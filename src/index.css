@@ -92,6 +92,10 @@
     & input {
       @apply w-full bg-transparent py-2 sm:pr-10 pl-10 text-base text-gray-200 placeholder-light-200 outline-hidden;
     }
+
+    & button {
+      @apply bg-light-100/5 text-white py-2 px-4 rounded-lg mt-4;
+    }
   }
 
   .all-movies {
@@ -139,6 +143,30 @@
 
     & .content .year {
       @apply text-gray-100 font-medium text-base;
+    }
+  }
+
+  .advanced-search {
+    @apply bg-dark-100 p-5 rounded-2xl shadow-inner shadow-light-100/10 mt-4;
+
+    & div {
+      @apply mt-4;
+    }
+
+    & label {
+      @apply text-white font-medium;
+    }
+
+    & input {
+      @apply w-full bg-transparent py-2 px-4 text-base text-gray-200 placeholder-light-200 outline-hidden;
+    }
+
+    & select {
+      @apply w-full bg-transparent py-2 px-4 text-base text-gray-200 placeholder-light-200 outline-hidden;
+    }
+
+    & button {
+      @apply bg-light-100/5 text-white py-2 px-4 rounded-lg mt-4;
     }
   }
 }
