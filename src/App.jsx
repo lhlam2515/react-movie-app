@@ -4,6 +4,7 @@ import Search from "./components/Search";
 import Spinner from "./components/Spinner";
 import { useState, useEffect } from "react";
 import { useDebounce, useSetState } from "react-use";
+import AdvancedSearch from "./components/AdvancedSearch";
 
 const API_BASE_URL = "https://api.themoviedb.org/3";
 
@@ -24,6 +25,13 @@ const App = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
+  const [filters, setFilters] = useState({
+    genre: "",
+    releaseYear: "",
+    language: "",
+    ratingRange: [0, 10],
+    sortOption: "popularity.desc",
+  });
 
   // Debounce the search term to prevent making too many API requests
   // by waiting for the user top stop typing for 500ms
@@ -36,7 +44,7 @@ const App = () => {
     try {
       const endpoint = query
         ? `${API_BASE_URL}/search/movie?query=${encodeURIComponent(query)}`
-        : `${API_BASE_URL}/discover/movie?sort_by=popularity.desc`;
+        : `${API_BASE_URL}/discover/movie?sort_by=${filters.sortOption}&with_genres=${filters.genre}&primary_release_year=${filters.releaseYear}&with_original_language=${filters.language}&vote_average.gte=${filters.ratingRange[0]}&vote_average.lte=${filters.ratingRange[1]}`;
 
       const response = await fetch(endpoint, API_OPTIONS);
 
@@ -78,7 +86,7 @@ const App = () => {
 
   useEffect(() => {
     fetchMovies(debouncedSearchTerm);
-  }, [debouncedSearchTerm]);
+  }, [debouncedSearchTerm, filters]);
 
   useEffect(() => {
     loadTrendingMovies();
@@ -97,6 +105,7 @@ const App = () => {
           </h1>
 
           <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+          <AdvancedSearch onFilterChange={setFilters} />
         </header>
 
         {trendingMovies.length > 0 && (

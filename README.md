@@ -10,6 +10,7 @@ This project is a movie search application built with React and Vite. It allows 
 - Responsive design with Tailwind CSS
 - Debounced search to minimize API requests
 - Loading spinner for better user experience
+- Advanced search filters: genre, release year, language, rating range, and sorting options
 
 ## Technologies Used
 

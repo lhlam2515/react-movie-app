@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Search = ({ searchTerm, setSearchTerm }) => {
+  const [showAdvancedSearch, setShowAdvancedSearch] = useState(false);
+
   return (
     <div className="search">
       <div>
@@ -13,6 +15,9 @@ const Search = ({ searchTerm, setSearchTerm }) => {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
+      <button onClick={() => setShowAdvancedSearch(!showAdvancedSearch)}>
+        {showAdvancedSearch ? "Hide Advanced Search" : "Show Advanced Search"}
+      </button>
     </div>
   );
 };
